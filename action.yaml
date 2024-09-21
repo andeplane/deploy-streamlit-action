@@ -1,0 +1,44 @@
+name: Deploy Streamlit Action
+description: Deploy a Cognite Streamlit app using GitHub workflows
+inputs:
+  deployment_client_secret:
+    description: Client secret to be used for deployment of the app.
+    required: true
+  deployment_client_id:
+    description: Client ID to be used for deployment of the app.
+    required: true
+  deployment_tenant_id:
+    description: Tenant ID to be used for deployment of the app.
+    required: true
+  cdf_project:
+    description: The name of your CDF project.
+    required: true
+  cdf_cluster:
+    description: The cluster your customer's CDF project lives in, like 'westeurope-1' or 'greenfield'.
+    required: true
+  app_external_id:
+    description: |
+      External ID and name of app. Must be unique within the CDF project as this action
+      always overwrites existing.
+    required: true
+  app_folder:
+    description: Path to the folder where the source code for the app(s) can be found.
+    required: true
+  entry_point:
+    description: Name of Python file inside app folder, for instance, main.py.
+    required: true
+  owner:
+    description: Set creator of the app, e.g. "My Client".
+    required: true
+  data_set_id:
+    description: Data set ID to scope access to the app. The app is a file that is added to the data set.
+    required: false
+  description:
+    description: Set description field of the app
+    required: false
+outputs:
+  app_external_id:
+    description: The external ID of the app.
+runs:
+  using: docker
+  image: docker://cognite/function-action:v1-github

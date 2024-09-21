@@ -1,0 +1,8 @@
+name: "My App"
+external_id: "my-app"
+version: "1.0.0"
+description: "My App Description"
+creator: "anders.hafreager@cognitedata.com"
+entrypoint: "main.py"
+published: True
+# dataSetId: 1234

@@ -1,0 +1,27 @@
+{
+  "requirements": [
+    "pyodide-http==0.2.1",
+    "cognite-sdk==7.46.1"
+  ],
+  "entrypoint": "main.py",
+  "files": {
+    "main.py": {
+      "content": {
+        "$case": "text",
+        "text": "import streamlit as st\nfrom my_library import get_assets\nst.title(\"Assets in Cognite Data Fusion\")\n\nst.write(get_assets())"
+      }
+    },
+    "my_library.py": {
+      "content": {
+        "$case": "text",
+        "text": "import streamlit as st\nfrom cognite.client import CogniteClient\nclient = CogniteClient()\n\n# Cache the assets list\n@st.cache_data\ndef get_assets():\n    assets = client.assets.list(limit=1000).to_pandas()\n    assets = assets.fillna(0)\n    return assets"
+      }
+    },
+    "pages/page.py": {
+      "content": {
+        "$case": "text",
+        "text": "import streamlit as st\nfrom my_library import get_assets\nst.title(\"This is a page in the app\")\n\nst.write(get_assets())"
+      }
+    }
+  }
+}

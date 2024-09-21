@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "streamlit-action"
+version = "1.0.0"
+description = ""
+authors = ["Anders Hafreager <anders.hafreager@cognite.com>"]
+
+
+[tool.black]
+line-length = 120
+target_version = ['py311']
+include = '\.py$'
+
+[tool.isort]
+line_length=120                # corresponds to -w  flag
+multi_line_output=3            # corresponds to -m  flag
+include_trailing_comma=true    # corresponds to -tc flag
+skip_glob = '^((?!py$).)*$'    # this makes sort all Python files
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+pydantic = "^1"
+pyyaml = ">=6.0"
+humanize = ">=4.4"
+pre-commit = ">=2.21"
+decorator = ">=5.1"
+cognite-sdk = {version = "^7"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=7.2"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+testpaths = [
+    "tests",
+]

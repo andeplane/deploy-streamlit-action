@@ -1,0 +1,2 @@
+class MissingAclError(ValueError):
+    pass
